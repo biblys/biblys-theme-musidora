@@ -1,0 +1,1755 @@
+/* Custom properties */
+
+:root {
+  --clr-dark: #000000;
+  --clr-light: #fffffa;
+  --clr-accent: #0099ae;
+  --ff-primary: "adobe-garamond-pro", Garamond, Times, "Times New Roman",
+    "Liberation Serif", serif;
+  --ff-accent: "Brandon Grotesque", Helvetica, Arial, sans-serif;
+  --line: 2.4rem; /* Pour tout ce qui est proportionnel à line-height */
+  --fs: 1.6rem; /* Font sizes */
+  --fs-h2: 3.2rem;
+  --fs-h3: 2.4rem;
+  --fs-h4: 2.1rem;
+  --fs-h5: 1.8rem;
+  --fs-h6: 1.4rem;
+}
+
+@media (min-width: 37.5rem) {
+  :root {
+    --line: 2.7rem;
+    --fs: 1.8rem;
+    --fs-h2: 3.6rem;
+    --fs-h3: 2.7rem;
+    --fs-h4: 2.4rem;
+    --fs-h5: 2rem;
+    --fs-h6: 1.6rem;
+  }
+}
+
+@media (min-width: 62.5rem) {
+  :root {
+    --line: 3rem;
+    --fs: 2rem;
+    --fs-h2: 4rem;
+    --fs-h3: 3rem;
+    --fs-h4: 2.6rem;
+    --fs-h5: 2.2rem;
+    --fs-h6: 1.8rem;
+  }
+}
+
+/* Fin Custom properties */
+
+/* Polices */
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src: url("/media/theme/brandon-grotesque-web-black.eot") format("eot"),
+    url("/media/theme/brandon-grotesque-web-black.woff") format("woff"),
+    url("/media/theme/brandon-grotesque-web-black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Brandon Grotesque";
+  src: url("/media/theme/brandon-grotesque-web-medium.eot") format("eot"),
+    url("/media/theme/brandon-grotesque-web-medium.woff") format("woff"),
+    url("/media/theme/brandon-grotesque-web-medium.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Généralités */
+
+*,
+*::before,
+*::after,
+p,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+main,
+footer,
+address,
+blockquote,
+button {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%; /* 1rem = 10px par défaut*/
+}
+
+body {
+  font-family: var(--ff-primary);
+  font-variant-numeric: oldstyle-nums;
+  font-weight: normal;
+  font-size: var(--fs);
+  line-height: var(--line);
+  background-color: var(--clr-light);
+  color: var(--clr-dark);
+}
+
+.container {
+  width: 85vw;
+  max-width: 114.4rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+ul,
+ol {
+  margin: 0;
+}
+
+main {
+  position: relative;
+}
+
+label {
+  float: none;
+  width: auto;
+}
+
+.floatR {
+  z-index: 1000;
+  position: absolute;
+}
+
+/* *** Zones avec fond de couleur *** */
+
+.bg-dark {
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+}
+
+.bg-accent {
+  background-color: var(--clr-accent);
+  color: var(--clr-light);
+}
+
+/* *** Typographie *** */
+
+a {
+  color: unset;
+  text-decoration: underline;
+}
+
+a,
+a:hover,
+a:focus {
+  cursor: pointer;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+  color: var(--clr-accent);
+}
+
+h1,
+.slogan p {
+  /* Gros titre */
+  font-family: var(--ff-accent);
+  font-size: max(3.2vw, 3.2rem);
+  line-height: 1.1em;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: -1px;
+}
+
+h1,
+.fond-noir {
+  background: var(--clr-dark);
+  color: var(--clr-light);
+  position: relative;
+  left: calc(50% - 50vw);
+  width: 99.5vw;
+}
+
+h1 {
+  padding: calc(var(--line) * 3) 0;
+}
+
+.titre-fiche {
+  padding: 0;
+}
+
+h2 {
+  /* Titres de parties, accroche */
+  font-size: var(--fs-h2);
+  line-height: calc(var(--line) * 2);
+  margin-bottom: var(--line);
+  letter-spacing: -1px;
+}
+
+p + h2 {
+  margin-top: calc(var(--line) * 3);
+}
+
+h2:first-of-type {
+  margin-top: var(--line);
+}
+
+.accueil__h2:first-of-type {
+  font-family: var(--ff-accent);
+  font-weight: 900;
+  font-variant-numeric: small-caps;
+  text-align: center;
+  margin-top: calc(var(--line) * 3);
+}
+
+h3 {
+  /* Sous-titres, taille utilisée aussi pour les boutons */
+  font-size: var(--fs-h3);
+  line-height: var(--line);
+  letter-spacing: -1px;
+}
+
+.body-text h3 {
+  margin-top: calc(var(--line) * 2);
+  margin-bottom: var(--line);
+}
+
+.gros-titre h3 {
+  margin-bottom: calc(var(--line) * 2);
+}
+
+h4 {
+  /* taille utilisée pour les infos des fiches livres */
+  font-size: var(--fs-h4);
+  line-height: var(--line);
+}
+
+.fiche__infos h3 {
+  font-style: italic;
+  line-height: 2em;
+}
+
+h5 {
+  /* Utilisé dans fiche-livre pour autres titres. La taille est utilisée pour le bouton commexion */
+  font-size: var(--fs-h5);
+  line-height: var(--line);
+}
+
+.gros-titre h3,
+.gros-titre h5 {
+  text-align: center;
+  font-weight: normal;
+}
+
+.gros-titre h5 {
+  font-style: italic;
+}
+
+.body-text h4,
+.body-text h5,
+.body-text h6 {
+  margin-top: var(--line);
+  font-style: italic;
+  font-weight: 700;
+}
+
+h6 {
+  /* Utilisé pour les titres footer. La taille est ausi utilisée pour le panier et pour le panier */
+  font-size: var(--fs-h6);
+  line-height: var(--line);
+}
+
+footer h6 {
+  font-family: var(--ff-accent);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.body-text p {
+  margin-bottom: var(--line);
+  width: 100%;
+  max-width: 57ch;
+}
+
+.body-text > p:first-of-type::first-letter {
+  /* Lettrine */
+  font-size: 5.2em;
+  color: var(--clr-accent);
+  float: left;
+  margin-right: 0.05em;
+  margin-top: 0.1em;
+}
+
+.body-text > p:first-of-type::first-line {
+  font-variant: small-caps;
+}
+
+address {
+  font-style: normal;
+}
+
+.gras {
+  font-weight: 700;
+}
+
+.italique {
+  font-style: italic;
+}
+
+.small-caps {
+  font-variant-caps: small-caps;
+}
+
+/* *** Filet *** */
+
+.main-quote::after,
+.social-media::after,
+/* .fiche__quotes::after,
+.fiche__quatrieme::after */
+/* .fiche__autres-infos::after */ {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 1px;
+  width: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--clr-dark);
+}
+/* 
+.fiche__quatrieme::after {
+  position: relative;
+  top: var(--line);
+} */
+
+footer::before,
+.fiche__quatrieme::before,
+.fiche__presentation::before,
+.fiche__quotes::before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 1px;
+  width: 50%;
+  left: 0;
+  right: 0;
+  top: calc(var(--line) * -1);
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--clr-dark);
+}
+
+.fiche__presentation::before {
+  top: 0;
+}
+
+.fiche__quotes::before {
+  top: calc(var(--line) * -3);
+}
+
+.social-media::after,
+.fiche__autres-infos::after {
+  bottom: -50%;
+}
+
+@media (min-width: 28.125rem) {
+  .social-media::after {
+    display: none;
+  }
+}
+
+@media (min-width: 37.5rem) {
+  .fiche__quotes::before {
+    display: none;
+  }
+
+  .fiche__quatrieme::before {
+    width: calc(500% / 8);
+    left: -63%;
+  }
+}
+
+@media (min-width: 62.5rem) {
+  /* .fiche__quatrieme::after {
+    width: 100%;
+    left: 30%;
+  } */
+
+  .fiche__quatrieme::before {
+    width: 50%;
+    left: 0;
+  }
+
+  .fiche__presentation::before {
+    top: 0;
+    left: -75%;
+    width: calc(600% / 7);
+  }
+}
+
+/* Citations généralités */
+
+blockquote {
+  position: relative;
+}
+
+.citation {
+  position: relative;
+  font-weight: 700;
+}
+
+.citation::before,
+.citation::after {
+  display: inline;
+  position: relative;
+  line-height: 0;
+}
+.citation::before {
+  content: "“";
+  left: -2rem;
+}
+
+.citation::after {
+  content: "”";
+  bottom: -2rem;
+  right: -1rem;
+}
+
+.source {
+  text-align: right;
+}
+
+/* *** Boutons *** */
+
+.bouton,
+.contact-form .btn,
+.search-form-button,
+.add_to_cart {
+  display: block;
+  font-family: var(--ff-accent);
+  font-weight: 600;
+  width: 100%;
+  max-width: 30rem;
+  border: 3px solid;
+  border-radius: 0;
+  font-size: var(--fs-h4);
+  line-height: var(--line);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.bouton,
+.add_to_cart {
+  margin-top: var(--line);
+  padding: calc(var(--line) - 3px) 1rem;
+}
+
+.bouton-light,
+.bouton-dark:hover,
+.btn-primary:hover,
+.bouton-dark:focus,
+.btn-primary:focus {
+  background-color: var(--clr-light);
+  color: var(--clr-accent);
+  border-color: var(--clr-accent);
+}
+
+.bouton-dark,
+.btn-primary,
+.bouton-light:hover,
+.bouton-light:focus {
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+  border-color: var(--clr-dark);
+}
+
+a.bouton,
+a.btn {
+  text-decoration: none;
+}
+
+/* Grille pour écran moins de 450px */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: var(--line);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Fin généralités */
+/* Header */
+
+header {
+  grid-template-areas:
+    "logo"
+    "nav"
+    "panier";
+  margin-bottom: 3rem;
+}
+
+header.grid {
+  column-gap: 1rem;
+}
+
+.header-logo {
+  grid-area: logo;
+  justify-self: center;
+}
+
+.logo {
+  width: 70vw;
+  max-width: 30rem;
+  height: auto;
+}
+
+.navigation {
+  grid-area: nav;
+  display: flex;
+  font-family: var(--ff-accent);
+  font-weight: 900;
+  font-size: max(1.4rem, 3.5vw);
+  justify-self: center;
+  align-self: center;
+}
+
+.navigation ul {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.7rem;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.navigation li {
+  margin: 0 0.8rem;
+}
+
+.navigation a {
+  text-decoration: none;
+  text-transform: uppercase;
+  position: relative;
+}
+
+/* *** Surlignement du menu au survol *** */
+
+.navigation a::before {
+  content: "";
+  display: block;
+  height: 0.3rem;
+  background: var(--clr-accent);
+  position: absolute;
+  top: -0.7rem;
+  left: 0;
+  right: 0;
+  transform: scale(0, 1);
+  transform-origin: right;
+  transition: transform ease-in-out 250ms;
+}
+
+.navigation a:hover::before {
+  transform: scale(1, 1);
+  transform-origin: left;
+}
+
+/* *** Panier *** */
+
+.panier {
+  display: flex;
+  grid-area: panier;
+  align-self: center;
+  justify-self: center;
+}
+
+.panier a.btn {
+  font-family: var(--ff-primary);
+  font-size: max(1.4rem, 3.5vw);
+  text-transform: unset;
+  border: none;
+  color: black;
+  background-color: transparent;
+  display: inline;
+  padding: 0;
+  line-height: 0;
+}
+
+.panier a.btn:hover {
+  color: var(--clr-accent);
+}
+
+.navigation,
+.panier {
+  padding-top: 1vw;
+}
+
+/* Fin header */
+/* Footer */
+
+.page-footer {
+  display: none;
+}
+
+/* *** Footer grille *** */
+
+footer {
+  grid-template-areas:
+    "coord"
+    "adresse"
+    "plan"
+    "sitemap"
+    "logof"
+    "copy";
+  margin-top: var(--line);
+}
+
+.coordonnees {
+  grid-area: coord;
+}
+
+.adresse {
+  grid-area: adresse;
+  margin-bottom: var(--line);
+  line-height: var(--line);
+}
+
+.plan {
+  grid-area: plan;
+}
+
+.sitemap {
+  grid-area: sitemap;
+}
+
+.footer__logo {
+  grid-area: logof;
+  justify-self: center;
+}
+
+.footer__logo img {
+  height: calc(var(--line) * 7);
+}
+
+/* .compte {
+  grid-area: compte;
+}
+
+.login {
+  grid-area: login;
+} */
+
+/* *** Footer style *** */
+
+footer {
+  margin-top: calc(var(--line) * 4);
+  position: relative;
+}
+
+footer p,
+.footer-icons
+/*.login*/ {
+  margin: 0;
+  /*margin-left: 8.8rem;*/
+}
+
+.footer-icons {
+  display: flex;
+}
+
+.footer-icons img {
+  height: var(--line);
+}
+
+.footer-icons .facebook-icon,
+.footer-icons .instagram-icon {
+  width: auto;
+  height: var(--line);
+}
+
+.axys {
+  font-weight: 700;
+  color: #ddd;
+}
+
+/* .login label,
+.login input {
+  display: block;
+  width: min(100%, 30rem);
+}
+
+.login input {
+  border: 1px solid var(--clr-dark);
+  height: var(--line);
+}
+
+.login .bouton {
+  margin: 1.8rem 0 0.4rem 0;
+  padding: 0.4rem 0;
+  font-size: var(--fs-h5);
+} */
+
+.copyright {
+  grid-area: copy;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: calc(var(--line) * 2);
+}
+
+/* Fin footer */
+
+/* Gros titre */
+
+.gros-titre {
+  padding: calc(var(--line) * 5) 0;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+
+/* Fin des zones communes */
+
+/* Page d'accueil */
+
+/* *** Zone de titre, incluant le slogan et le "call to action" *** */
+
+.hero {
+  grid-template-areas:
+    "slogan"
+    "bouton"
+    "vitrine";
+}
+
+.slogan {
+  grid-area: slogan;
+  padding-top: calc(var(--line) * 4);
+  padding-bottom: calc(var(--line) * 4);
+}
+
+.cta-button {
+  grid-area: bouton;
+  align-self: center;
+  margin-top: 0;
+  margin-bottom: calc(var(--line) * 4);
+  /* box-shadow: 5px 5px 10px var(--clr-accent), -5px -5px 10px var(--clr-accent),
+    -5px 5px 10px var(--clr-accent), 5px -5px 10px var(--clr-accent); */
+  border-radius: 50px;
+  background-color: var(--clr-dark);
+  border-color: var(--clr-light);
+  width: 98%;
+  max-width: 36.8rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-button {
+  color: var(--clr-light);
+}
+
+.cta-button:hover,
+.cta-button:focus {
+  /* box-shadow: 5px 5px 10px var(--clr-light), -5px -5px 10px var(--clr-light),
+    -5px 5px 10px var(--clr-light), 5px -5px 10px var(--clr-light); */
+  color: var(--clr-dark);
+  background-color: var(--clr-light);
+}
+
+/* *** Vitrine *** */
+
+.vitrine {
+  grid-area: vitrine;
+  padding-bottom: calc(var(--line) * 2);
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vitrine__livre {
+  border-radius: 0.6rem;
+  width: 100%;
+  background-color: var(--clr-light);
+  color: var(--clr-dark);
+  /* box-shadow: 5px 5px 10px var(--clr-accent), -5px -5px 10px var(--clr-accent),
+    -5px 5px 10px var(--clr-accent), 5px -5px 10px var(--clr-accent); */
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.vitrine__livre .description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 15px;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.titre-livre {
+  font-style: italic;
+  font-size: 9vw;
+  line-height: 10vw;
+}
+
+.auteur {
+  font-family: var(--ff-accent);
+  font-weight: 600;
+  font-size: 5.4vw;
+  line-height: 6.4vw;
+  color: var(--clr-accent);
+  padding: 1em 0;
+}
+
+.vitrine__livre2 {
+  display: none; /* Les livres 2 et 3 s'affichent en fonction de la largeur d'écran */
+}
+
+.vitrine__livre3 {
+  display: none;
+}
+
+.image-vitrine {
+  width: 100%;
+  height: auto;
+  transform: scale(1);
+  transition: all 0.3s ease-out;
+}
+
+.vitrine__livre .description a {
+  color: var(--clr-light);
+  font-size: 5.4vw;
+  background: var(--clr-accent);
+  border: 2px solid;
+  border-color: var(--clr-accent);
+  display: inline-block;
+  padding: 10px 25px;
+  text-decoration: none;
+}
+
+/* ****** Animation de la vitrine au survol ****** */
+
+@media (hover) {
+  .vitrine__livre {
+    transition: all 0.3s ease-out;
+  }
+
+  .vitrine__livre .description {
+    background-color: transparent;
+  }
+
+  .vitrine__livre:hover img,
+  .vitrine__livre:focus-within img {
+    transform: scale(0.9) translateY(-20px);
+    opacity: 0.2;
+  }
+  .vitrine__livre:hover .description,
+  .vitrine__livre:focus-within .description {
+    background-color: var(--clr-light);
+  }
+
+  .vitrine__livre .description a:hover,
+  .vitrine__livre .description a:focus {
+    background: var(--clr-light);
+    color: var(--clr-accent);
+    border-color: var(--clr-accent);
+  }
+
+  .vitrine__livre:hover .titre-livre,
+  .vitrine__livre:focus-within .titre-livre {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  .vitrine__livre:hover .auteur,
+  .vitrine__livre:focus-within .auteur {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  .vitrine__livre:hover .description a,
+  .vitrine__livre:focus-within .description a {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: translate 0.3s ease-out 0.4s;
+    transition: opacity 0.5s ease-out 0.4s;
+  }
+
+  .titre-livre {
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.3s ease-out;
+  }
+
+  .auteur {
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.3s ease-out 0.2s;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+  }
+
+  .vitrine__livre .description a {
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.3s ease-out;
+  }
+
+  .vitrine__livre .description {
+    bottom: 50%;
+    transform: translateY(50%);
+  }
+}
+
+/* ****** Changement du nombre de livres affichés en fonction de la largeur d'écran ****** */
+
+@media (min-width: 28.125rem) {
+  .vitrine__livre2 {
+    display: block;
+  }
+
+  .vitrine div {
+    width: 47%;
+  }
+
+  /* .image-vitrine {
+    height: auto;
+    width: auto;
+  } */
+
+  .titre-livre {
+    font-size: 4vw;
+    line-height: 4.5vw;
+  }
+
+  .auteur {
+    font-size: 2.4vw;
+    line-height: 2.9vw;
+  }
+
+  .vitrine__livre .description a {
+    font-size: 2.4vw;
+  }
+}
+
+@media (min-width: 50rem) {
+  .vitrine__livre3 {
+    display: block;
+  }
+
+  .vitrine div {
+    width: 30%;
+  }
+
+  .titre-livre {
+    font-size: 2.5vw;
+    line-height: 2.8vw;
+  }
+
+  .auteur {
+    font-size: 1.5vw;
+    line-height: 1.8vw;
+  }
+
+  .vitrine__livre .description a {
+    font-size: 1.5vw;
+  }
+  /* 
+  .image-vitrine {
+    height: 35.25vw;
+  } */
+}
+
+/* *** Fin vitrine *** */
+
+/* *** Accueil Main *** */
+
+.main-accueil {
+  grid-template-areas:
+    "cit"
+    "nl"
+    "sm"
+    "about";
+  margin-top: var(--line);
+}
+
+/* ****** Citation ****** */
+
+.main-quote {
+  grid-area: cit;
+  margin-top: calc(var(--line) * 3);
+  padding-bottom: var(--line);
+  width: 98%;
+  max-width: 36.8rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: var(--fs-h2);
+  line-height: 1.1em;
+  margin-bottom: 0;
+}
+
+.accueil__source {
+  font-size: 2rem;
+  line-height: var(--line);
+}
+
+/* ********* Guillemets ********* */
+
+.accueil__citation::before,
+.accueil__citation::after {
+  font-size: calc(var(--fs-h2) * 1.8);
+}
+.accueil__citation::before {
+  top: 2rem;
+}
+
+.accueil__citation::after {
+  bottom: -2rem;
+}
+
+/* ****** Reste de la page d'accueil ****** */
+
+.newsletter {
+  grid-area: nl;
+  margin-top: calc(var(--line) * 4);
+  text-align: center;
+}
+
+.inscription{
+  border:1px solid;
+}
+
+.social-media {
+  grid-area: sm;
+  text-align: center;
+  margin-top: calc(var(--line) * 4);
+  margin-bottom: calc(var(--line) * 2);
+  position: relative;
+}
+
+.social-media .facebook-icon {
+  padding-right: 1rem;
+  width: auto;
+  height: calc(var(--line) * 2);
+}
+
+.social-media .instagram-icon {
+  padding-left: 1rem;
+  width: auto;
+  height: calc(var(--line) * 2);
+}
+
+.facebook-icon:hover,
+.instagram-icon:hover {
+  fill: var(--clr-accent);
+}
+
+.social-media-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--line);
+}
+
+.about {
+  grid-area: about;
+  /* margin-top: calc(var(--line) * 2); */
+  /* margin-bottom: calc(var(--line) * 2); */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fin de la page d'accueil */
+
+/* Page article */
+
+.main-article {
+  grid-template-areas:
+    "sidebar"
+    "article";
+}
+
+.article-content {
+  grid-area: article;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+/* Fin de la page article */
+
+/* Fiche livre */
+
+.fiche-livre {
+  margin-top: calc(var(--line) * 3);
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+    "accroche"
+    "couv"
+    "infos"
+    "divers"
+    "bouton"
+    "autres-infos"
+    "quatrieme"
+    "citations"
+    "presa"
+    "img";
+}
+
+.fiche__accroche {
+  grid-area: accroche;
+  margin-bottom: var(--line);
+  font-size: var(--fs-h2);
+  font-style: italic;
+}
+
+.fiche__couv {
+  grid-area: couv;
+  width: 100%;
+  margin-bottom: var(--line);
+}
+
+.fiche__couv img,
+.fiche__img img {
+  width: 100%;
+  height: auto;
+}
+
+.fiche__img img {
+  margin-bottom: var(--line);
+  border: 0.3rem solid;
+  border-color: var(--clr-dark);
+}
+
+.fiche__infos {
+  grid-area: infos;
+}
+
+.fiche__quatrieme {
+  grid-area: quatrieme;
+  position: relative;
+  margin: calc((var(--line) * 2) - 1px) 0;
+}
+
+/* .fiche__infos p {
+  font-size: var(--fs-h5);
+  line-height: 2em;
+} */
+
+.fiche__divers {
+  grid-area: divers;
+}
+
+.add_to_cart
+/*.fiche__bouton*/ {
+  grid-area: bouton;
+  width: 100%;
+  max-width: 46rem;
+  margin: var(--line) 0;
+  white-space: normal;
+  position: sticky;
+  top: var(--line);
+  z-index: 999;
+}
+
+.fiche__autres-infos {
+  grid-area: autres-infos;
+  position: relative;
+}
+
+.fiche__quotes {
+  grid-area: citations;
+  margin-top: calc(var(--line) * 3);
+  position: relative;
+}
+
+.fiche__blockquote {
+  margin-bottom: calc(var(--line) * 2);
+}
+
+.fiche__citation {
+  font-size: var(--fs-h5);
+}
+
+.fiche__source {
+  font-size: 1.9rem;
+  line-height: var(--line);
+}
+
+.fiche__citation::before,
+.fiche__citation::after {
+  font-size: 5rem;
+}
+.fiche__citation::before {
+  top: 1rem;
+}
+
+.fiche__citation::after {
+  bottom: -2rem;
+}
+
+.fiche__presentation {
+  grid-area: presa;
+  position: relative;
+}
+
+.fiche__img {
+  grid-area: img;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--line);
+}
+
+/* Fin de la fiche livre */
+
+/* boutique et recherche */
+
+.boutique {
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--line);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0 1rem;
+  line-height: var(--line);
+  border: 3px solid #ccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.search-button {
+  align-self: center;
+  margin: var(--line) 0;
+  padding: 0;
+  font-size: var(--fs-h5);
+}
+
+.search-form-input {
+  margin: var(--line) auto;
+  max-width: 57.2rem;
+  height: 4.5rem;
+  border-radius: 0;
+}
+
+.vignette {
+  text-align: center;
+  margin: var(--line) 0;
+}
+
+.vignette img:hover {
+  border: 3px solid;
+}
+
+.vignette__titre {
+  font-style: italic;
+}
+
+.vignette__auteur {
+  font-weight: 700;
+}
+
+.vignette__lien {
+  text-decoration: underline;
+}
+
+@media (min-width: 28.125rem) {
+  .search {
+    grid-column: span 2;
+  }
+
+  .boutique__pagination {
+    grid-column: span2;
+  }
+}
+
+@media (min-width: 37.5rem) {
+  .vignette {
+    grid-column: span 2;
+  }
+
+  .search {
+    grid-column: span 8;
+    flex-direction: row;
+  }
+
+  .boutique__pagination {
+    grid-column: span8;
+  }
+
+  /* .form-control {
+    max-width: calc(50% - var(--line) / 2);
+    align-self: center;
+    margin-right: var(--line);
+  } */
+}
+
+@media (min-width: 62.5rem) {
+  .vignette {
+    grid-column: span 3;
+  }
+
+  .search {
+    grid-column: span 12;
+  }
+
+  .boutique__pagination {
+    grid-column: span12;
+  }
+}
+/* Fin de la boutique */
+
+/* Contact */
+
+textarea.form-control {
+  max-width: 100%;
+}
+
+form.fieldset fieldset {
+  background-color: unset;
+}
+
+/* Page a propos */
+
+.about-page {
+  grid-template-areas:
+    "malle1"
+    "malletext"
+    "malle2"
+    "abouttext";
+  margin-top: calc(var(--line) * 2);
+  row-gap: calc(var(--line) * 2);
+}
+
+.malle1 {
+  grid-area: malle1;
+}
+
+.malle-text {
+  grid-area: malletext;
+  font-weight: bold;
+}
+
+.malle2 {
+  grid-area: malle2;
+}
+
+.about-text {
+  grid-area: abouttext;
+}
+
+/*.malle1 img,
+.malle2 img {
+  margin-top: calc(var(--line) * 3);
+}
+
+.malle-text p {
+  margin-bottom: 0;
+}*/
+
+.malle-text p:first-of-type {
+  margin-bottom: 0;
+}
+
+.malle-text p:last-of-type {
+  margin-bottom: var(--line);
+}
+
+/* Page panier */
+
+.cart-table {
+  margin-top: calc(var(--line) * 2);
+}
+
+/* Media queries */
+/* *** 450 à 600px *** */
+@media (min-width: 28.125em) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  header {
+    grid-template-areas:
+      "logo logo"
+      "nav nav"
+      "panier panier";
+  }
+
+  .hero {
+    grid-template-areas:
+      "slogan slogan"
+      "bouton bouton"
+      "vitrine vitrine";
+  }
+
+  footer {
+    grid-template-areas:
+      "coord plan"
+      "adresse sitemap"
+      "logof logof"
+      "logof logof"
+      "copy copy";
+  }
+
+  footer p,
+  .footer-icons,
+  /*.login*/ {
+    margin-left: 0;
+  }
+
+  .main-accueil {
+    grid-template-areas:
+      "cit cit"
+      "nl sm"
+      "about about";
+  }
+  /* 
+  .social-media {
+    margin-top: calc(var(--line) * 4);
+  } */
+
+  /* .compte {
+    margin-top: var(--line);
+  } */
+
+  .main-article {
+    grid-template-areas:
+      "sidebar sidebar"
+      "article article";
+  }
+
+  .fiche-livre {
+    grid-template-areas:
+      "accroche couv"
+      "divers couv"
+      "autres-infos couv"
+      "bouton bouton"
+      "infos infos"
+      "quatrieme quatrieme"
+      "citations citations"
+      "presa presa"
+      "img img";
+  }
+
+  .fiche__infos {
+    text-align: right;
+  }
+
+  .fiche__img {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about-page {
+    grid-template-areas:
+      "malle1 malle1"
+      "malletext malletext"
+      "malle2 malle2"
+      "abouttext abouttext";
+  }
+}
+
+/* *** 600 à 1000px *** */
+
+@media (min-width: 37.5rem) {
+  .grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  header {
+    grid-template-areas: "logo logo logo nav nav nav panier .";
+    margin-bottom: 0;
+  }
+
+  .header-logo {
+    justify-self: auto;
+  }
+
+  .logo {
+    display: block;
+    width: auto;
+  }
+
+  .navigation {
+    font-size: 2rem;
+    font-size: min(2vw, 2rem);
+  }
+
+  .panier a.btn {
+    font-size: 2rem;
+    font-size: min(2vw, 2rem);
+  }
+
+  .navigation,
+  .panier {
+    padding-top: 2vw;
+  }
+
+  .gros-titre {
+    padding: calc(var(--line) * 3) 0;
+  }
+
+  .hero {
+    grid-template-areas:
+      "slogan slogan slogan slogan bouton bouton bouton bouton"
+      "vitrine vitrine vitrine vitrine vitrine vitrine vitrine vitrine";
+  }
+
+  /*.slogan {
+    padding-top: calc(var(--line) * 6);
+    padding-bottom: calc(calc(var(--line) * 6) - 11px);
+  }*/
+
+  .cta-button {
+    margin-bottom: 0;
+  }
+
+  footer {
+    grid-template-areas:
+      "coord coord coord plan plan plan logof logof"
+      "adresse adresse adresse sitemap sitemap sitemap logof logof"
+      "copy copy copy copy copy copy copy copy ";
+  }
+
+  /* .compte {
+    margin-top: 0;
+  } */
+
+  .main-accueil {
+    grid-template-areas:
+      ". . cit cit cit cit . ."
+      "nl nl nl nl sm sm sm sm"
+      ". about about about about about about .";
+  }
+
+  .main-article {
+    grid-template-areas: "article article article article article sidebar sidebar sidebar";
+  }
+
+  .fiche-livre {
+    grid-template-rows: auto auto auto auto 1fr;
+    grid-template-areas:
+      "accroche accroche accroche accroche accroche accroche accroche accroche"
+      "infos infos infos infos infos couv couv couv"
+      "infos infos infos infos infos divers divers divers"
+      "infos infos infos infos infos bouton bouton bouton"
+      "infos infos infos infos infos autres-infos autres-infos autres-infos"
+      "citations citations citations quatrieme quatrieme quatrieme quatrieme quatrieme"
+      "citations citations citations presa presa presa presa presa"
+      "img img img img img img img img";
+  }
+
+  .fiche__quotes {
+    margin-top: calc(var(--line) * 3);
+  }
+
+  .about-page {
+    grid-template-areas:
+      "malle1 malle1 malle1 malle1 malletext malletext malletext malletext"
+      "abouttext abouttext abouttext abouttext malle2 malle2 malle2 malle2";
+  }
+}
+
+/* *** + de 760px *** */
+
+@media (min-width: 47.5rem) {
+  header {
+    grid-template-areas:
+      "logo logo nav nav nav nav . ."
+      "logo logo panier panier panier panier . .";
+  }
+
+  .navigation,
+  .panier {
+    padding-top: 0;
+  }
+}
+
+/* *** + de 1000px *** */
+
+@media (min-width: 62.5rem) {
+  .grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  header {
+    grid-template-areas: "logo logo logo nav nav nav nav nav panier . . .";
+  }
+
+  .navigation,
+  .panier {
+    padding-top: 1vw;
+  }
+
+  .hero {
+    grid-template-areas:
+      "slogan slogan slogan slogan slogan slogan bouton bouton bouton bouton bouton bouton"
+      "vitrine vitrine vitrine vitrine vitrine vitrine  vitrine vitrine vitrine vitrine vitrine vitrine";
+  }
+
+  footer {
+    grid-template-areas:
+      "coord coord coord coord plan plan plan plan logof logof logof logof"
+      ". adresse adresse adresse . sitemap sitemap sitemap logof logof logof logof"
+      "copy copy copy copy copy copy copy copy copy copy copy copy ";
+  }
+
+  .main-accueil {
+    grid-template-areas:
+      ". . . . cit cit cit cit . . . ."
+      "nl nl nl nl nl nl about about about about about about"
+      "sm sm sm sm sm sm about about about about about about";
+    grid-template-rows: auto calc(var(--line) * 16);
+  }
+
+  .about-page {
+    /*grid-template-areas:
+      "malle1 malle1 malle1 malletext malletext malletext malletext malletext malletext malle2 malle2 malle2"
+      "abouttext abouttext abouttext abouttext abouttext abouttext abouttext abouttext abouttext abouttext abouttext abouttext";*/
+    grid-template-areas:
+      "malle1 malle1 malle1 malle1 malle1 malletext malletext malletext malletext malletext malletext malletext"
+      "abouttext abouttext abouttext abouttext abouttext abouttext abouttext malle2 malle2 malle2 malle2 malle2";
+  }
+
+  .quote {
+    font-size: 3.2rem;
+  }
+
+  .quote::before,
+  .quote::after {
+    font-size: 7rem;
+  }
+
+  .source {
+    font-size: 2.4rem;
+  }
+
+  .newsletter {
+    margin-top: calc(var(--line) * 6);
+  }
+
+  .social-media {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .social-media::after {
+    display: none;
+  }
+
+  .main-article {
+    grid-template-areas: ". article article article article article article article sidebar sidebar sidebar sidebar";
+  }
+
+  .fiche-livre {
+    grid-template-areas:
+      "accroche accroche accroche accroche accroche accroche accroche accroche accroche accroche accroche accroche"
+      "infos infos infos infos infos infos infos infos couv couv couv couv"
+      "quatrieme quatrieme quatrieme quatrieme quatrieme quatrieme quatrieme . couv couv couv couv"
+      "quatrieme quatrieme quatrieme quatrieme quatrieme quatrieme quatrieme . divers divers divers divers"
+      "quatrieme quatrieme quatrieme quatrieme quatrieme quatrieme quatrieme . bouton bouton bouton bouton"
+      "quatrieme quatrieme quatrieme quatrieme quatrieme quatrieme quatrieme . autres-infos autres-infos autres-infos autres-infos"
+      "citations citations citations citations . presa presa presa presa presa presa presa"
+      "img img img img img img img img img img img img";
+    grid-template-rows: auto auto auto auto auto 1fr;
+  }
+
+  .fiche__img {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+/* *** + de 1200px */
+
+@media (min-width: 75rem) {
+  header {
+    grid-template-areas: "logo logo logo . nav nav nav nav panier panier . .";
+  }
+
+  .navigation,
+  .panier {
+    padding-top: 1.4rem;
+  }
+}
+
+/* *** + de 1440px */
+
+@media (min-width: 90rem) {
+  header {
+    grid-template-areas: "logo logo logo nav nav nav nav nav nav panier panier .";
+  }
+}
+
+/* *** Dark mode *** */
+
+:root{
+  --clr-dark: #231F20;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--clr-dark);
+    color: var(--clr-light);
+  }
+
+  .logo,
+  .footer__logo img {
+    filter: invert(100%) sepia(12%) saturate(7454%) hue-rotate(193deg)
+      brightness(114%) contrast(111%);
+  }
+}
+
+/* *** Réduction des animations *** */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* *** Impression *** */
+
+@media print {
+  body {
+    background-color: white;
+  }
+
+  nav.navigation,
+  .panier,
+  footer.grid,
+  .copyright {
+    display: none;
+  }
+
+  header.grid {
+    margin: 0 0 2.4rem -2.4rem;
+  }
+}

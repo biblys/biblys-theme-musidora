@@ -1,0 +1,32 @@
+    <!-- Contenu boutique -->
+
+    <main class="grid boutique">
+        <!-- <form class="search">
+            <input type="search" class="form-control" name="q" value="" placeholder="Titre, auteur, mot-clé, ISBN...">
+            <button class="bouton bouton-dark search-button" type="submit">Rechercher</button>
+        </form> -->
+        
+    {% for article in articles|filter(article => article.has('url')) %}
+
+        <div class="vignette">
+            {% if article.hasCover() %}
+                {{ article.getCoverTag({
+                    link: path('article_show', { slug: article.url }),
+                    class: "cover-boutique",
+                    size: "w300" })|raw }}
+            {% endif %}
+
+            <p><span class="vignette__titre">{{ article.title }}</span></p>
+            {% if article.has('authors') %}
+                <p><span class="vignette__auteur">{{ article.authors }}</span></p>
+            {% endif %}
+            {% if article.has('price') %}
+                <p class="vignette__prix">
+                    {{article.price|currency(true)|raw}}
+                </p>
+            {% endif %}
+            <p><a class="vignette__lien" href="{{path('article_show', { slug: article.url })}}">En savoir plus</a></p>
+        </div>
+	{% endfor %}
+        <div class="boutique__pagination">{% include 'AppBundle:Article:_list_pagination.html.twig' %}</div>
+    </main>

@@ -1,0 +1,178 @@
+   <!-- Gros titre -->
+
+   <section class="gros-titre fond-noir">
+    <h3>{% for author in article.getAuthors() %}
+          {{ author.name }}
+          {% if not loop.last %},
+            {% endif %}
+        {% endfor %}
+    </h3>
+    <h1 class="titre-fiche">{{ article.title }}</h1>
+    {% if article.has('subtitle') %}
+        <h5>{{ article.subtitle }}</h5>
+    {% endif %}
+    {% if article.has('title_others') %}
+        <h5 class="italique">({{ article.title_others }})</h5>
+    {% endif %}
+    {% if article.has('title_original') %}
+        <h5 class="italique">({{ article.title_original }})</h5>
+    {% endif %}
+    {% if article.has('cycle') %}
+        <h5><a href="{{ path('cycle_show', { slug: article.cycle.url }) }}">
+            {{ article.cycle.name }}
+            </a>
+            {% if article.has('tome') %}
+                -
+                {{ article.tome }}
+            {% endif %}
+        </h5>
+    {% endif %}
+</section>
+
+   <!-- Contenu fiche -->
+
+<main class="grid fiche-livre">
+    <div class="fiche__accroche">
+        {% if article.has('catchline') %}
+            {{ article.catchline|raw }}
+        {% endif %}
+    </div>
+    <div class="fiche__couv">
+        {% if article.hasCover() %}
+            {{ article.getCoverTag({ class:"cover", size:"w300",rel: "lightbox" })|raw }}
+        {% endif %}
+    </div>
+    <div class="fiche__infos">
+        <h3>{{ article.title }}</h3>
+        <p>
+            <!-- {% if article.has('rayons') %}
+                {% for rayon in article.rayons %}
+                    {{ rayon.name }}
+                {% endfor %} 
+            {% endif %} -->
+            de 
+            <span class="gras small-caps">
+            {% for author in article.getAuthors() %}
+                <a href="{{ path('people_show', { slug: author.url }) }}">{{ author.name }}
+                </a>
+                {% if not loop.last %},
+                {% endif %}
+            {% endfor %}
+            </span>
+        </p>
+        {% if article.has('copyright') %}    
+            <p>Paru pour la première fois  
+                {% if article.has('originCountry') %}
+                    {% if article.has('langOriginal') %}
+                        en {{ article.langOriginal.name }} ({{ article.originCountry.name }})
+                    {% else %}
+                        en {{ article.originCountry.name }}
+                    {% endif %} 
+                {% endif %}   
+                    en <span class="gras">{{ article.copyright }}</span></p>
+        {% endif %}
+        {% if article.hasOtherContributors() %}
+            {% for people in article.getOtherContributors %}
+                <p>{{ people.job_name}}&nbsp;:
+                    <a class="gras small-caps" href="{{ path('people_show', { slug: people.url }) }}">{{ people.name }}</a>
+                </p>
+            {% endfor %}
+        {% endif %}
+        {% if article.has('pages') %}
+            <p>
+                {{ article.pages }}
+                pages 
+                {% if article.has('format') %}
+                    au format {{ article.format }} cm 
+                {% endif %}
+                {% if article.has('shaping') %}
+                        {{ article.shaping }}
+                {% endif %}
+            </p>
+        {% endif %}
+        {% if article.has('price') %}
+            <p>Au prix de <span class="gras">    
+                {{article.price|currency(true)|raw}}
+            </span>
+            </p>
+        {% endif %}
+    </div>
+        <div class="fiche__quatrieme">
+            {% if article.has('summary') %}
+                {{ article.summary|raw }}
+            {% endif %}
+        </div>
+    <div class="fiche__divers">
+        {% if article.has('collection') %}
+            <p>Collection {{ article.collection.name }}</p>
+        {% endif %}
+        {% if article.has('ageRange') %}
+            <p>{{ article.ageRange }}</p>
+        {% endif %}
+        <p>
+            {% if article.type.id == 1 %}
+				Livre papier
+			{% elseif article.type.id == 2 %}
+				Livre numérique
+			{% endif %}
+        </p>
+        {% set other = article.otherVersion %}
+		{% if other and other.type_id == 2 %}
+			<p>Existe aussi en
+				<a href="{{ path('article_show', { slug: other.url }) }}">numérique</a>.</p>
+		{% elseif other and other.type_id == 1 %}
+			<p>Existe aussi en
+				<a href="{{ path('article_show', { slug: other.url }) }}">papier</a>.</p>
+		{% endif %}
+        {% if article.hasDownloadableFiles('free') %}
+			<p>
+				{% for file in article.getDownloadableFiles('free') %}
+					<a href="{{ file.getUrl() }}"">
+						{{ file.getType('name') }}</a>
+				{% endfor %}
+			</p>
+		{% endif %}
+    </div>
+    {{ article.cartButton('Ajouter au panier')|raw }}
+    <div class="fiche__autres-infos">
+        {{ article.availabilityLed|raw }} 
+        {{ article.availabilityText }}
+        {% if article.has('pubdate') %}
+        <p>Parution le
+            {{ article.pubdate|date('j f Y') }}
+        </p>
+        {% endif %} 
+        {% if article.has('ean') %}
+        <p>
+            ISBN&nbsp;: {{ article.isbn }}
+        </p>
+        {% endif %}
+    </div>
+    <div class="fiche__quotes">
+        {% if article.has('awards') %}
+            <p>{{ article.awards }}</p>
+        {% endif %}
+        {% if article.has('bonus') %}
+            {{ article.bonus|raw }}
+        {% endif %}
+    </div>
+    <div class="fiche__presentation body-text">
+        {% if article.has('contents') %}
+            {{ article.contents|raw }}
+        {% endif %}
+    </div>
+    <div class="fiche__img">
+        {% if article.has('biography') %}
+            {{ article.biography|raw }}
+        {% endif %}
+    </div>
+</main>
+
+{% if app.user.isAdmin() %}
+<div class="admin">
+<p>Article n° {{ article.id }}</p>
+<p><a href="/pages/adm_article?id={{ article.id }}">modifier</a></p>
+<p><a href="/pages/adm_stocks?article_id={{ article.id }}">stock</a></p>
+<p><a href="/pages/adm_stock?add={{ article.id }}">ajouter</a></p>
+</div>
+{% endif %}
