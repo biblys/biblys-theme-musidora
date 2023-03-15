@@ -2,17 +2,40 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>{PAGE_TITLE} | Imaginaire en tous genres</title>
+    <title>
+        {% set titleBlock = block("title") %}
+        {% if titleBlock is not empty %}
+            {% block title %}{% endblock %} |
+        {% endif %}
+        Imaginaire en tous genres
+    </title>
     <meta name="description" content="Les Éditions Musidora, l'imaginaire au sens large, littérature, cinéma, bande-dessinée, arts graphiques, textes rares et méconnus">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, intial-scale=1">
-    {CSS_CALLS} {OPENGRAPH}
+
+    {% include "layout:_assets_css.html.twig" %}
+
     <link rel="stylesheet" href="https://use.typekit.net/oyw2kno.css">
-    <link rel="stylesheet" href="/theme/styles.css?{ASSETS_VERSION}" />
-    <!--<link rel="shortcut icon" type="image/ico" href="/media/theme/favicon.ico"/>-->
+    <link rel="stylesheet" href="/theme/styles.css?{{ app.site.getOpt('assets_version') }}" />
     <link rel="icon" type="image/svg+xml" href="/media/theme/favicon.svg">
     <link rel="icon" type="image/png" href="/media/theme/favicon.png">
-    {MATOMO}
+
+    <!-- Matomo -->
+    <script>
+        const matomo = window._paq = window._paq || [];
+        const matomoSiteId = {{ app.site.id }};
+        matomo.push(["trackPageView"]);
+        matomo.push(["enableLinkTracking"]);
+        (function() {
+            matomo.push(["setTrackerUrl", "https://biblys.matomo.cloud/matomo.php"]);
+            matomo.push(["setSiteId", matomoSiteId]);
+            matomo.push(["addTracker", "https://analytics.biblys.cloud/matomo.php", matomoSiteId]);
+            const d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
+            g.async=true; g.src="//cdn.matomo.cloud/biblys.matomo.cloud/matomo.js"; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
+
 </head>
 <body>
 
@@ -22,7 +45,7 @@
         <a class="header-logo" href="/">
             <picture>
                 <source media="(max-width:599px)" srcset="/media/theme/logo-noir-vertical.svg">
-                <img class="logo" src="/media/theme/logo-noir-horiz.svg" alt="MUSIDORA">
+                <img class="logo" src="/theme/logo-noir-horiz.svg" alt="MUSIDORA">
             </picture>
         </a>
         <nav class="navigation">
@@ -39,11 +62,11 @@
             </ul>
         </nav>
         <div class="panier">
-               {cart_oneline}
+            {{ cart_status()|raw }}
         </div>
     </header>
 
-    {PAGE_CONTENT}
+    {% block main %}{% endblock %}
 
     <!-- Footer -->
 
@@ -81,7 +104,7 @@
             <p><a href="/contact/">Contact</a></p>
         </div>
         <div class="footer__logo">
-            <img src="/media/theme/logo-noir-vertical.svg" alt="MUSIDORA">
+            <img src="/theme/logo-noir-vertical.svg" alt="MUSIDORA">
         </div>
             <!-- <h6 class="compte">Mon compte</h6>
             <div class="login">
@@ -94,7 +117,7 @@
             </div> -->
         </div>
         <div class="copyright">
-            copyright 2022 {SITE_TITLE}
+            copyright 2022 Les Éditions Musidora
             <p class="text-center">
                 <a href="http://www.biblys.fr/" target="_blank">
                   <img src="/assets/images/propulse-par-biblys.png" alt="Propulsé par Biblys" />
@@ -103,7 +126,9 @@
         </div>
     </footer>
 </div>
-    {AXYS_MENU} {JS_CALLS}
+
+{{ app.axysMenu|raw }}
+{% include "layout:_assets_js.html.twig" %}
 
 </body>
 </html>

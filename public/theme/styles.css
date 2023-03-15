@@ -46,18 +46,18 @@
 
 @font-face {
   font-family: "Brandon Grotesque";
-  src: url("/media/theme/brandon-grotesque-web-black.eot") format("eot"),
-    url("/media/theme/brandon-grotesque-web-black.woff") format("woff"),
-    url("/media/theme/brandon-grotesque-web-black.woff2") format("woff2");
+  src: url("/theme/brandon-grotesque-web-black.eot") format("eot"),
+    url("/theme/brandon-grotesque-web-black.woff") format("woff"),
+    url("/theme/brandon-grotesque-web-black.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Brandon Grotesque";
-  src: url("/media/theme/brandon-grotesque-web-medium.eot") format("eot"),
-    url("/media/theme/brandon-grotesque-web-medium.woff") format("woff"),
-    url("/media/theme/brandon-grotesque-web-medium.woff2") format("woff2");
+  src: url("/theme/brandon-grotesque-web-medium.eot") format("eot"),
+    url("/theme/brandon-grotesque-web-medium.woff") format("woff"),
+    url("/theme/brandon-grotesque-web-medium.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
 }
