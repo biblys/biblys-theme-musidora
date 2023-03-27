@@ -20,22 +20,7 @@
     <link rel="icon" type="image/svg+xml" href="/media/theme/favicon.svg">
     <link rel="icon" type="image/png" href="/media/theme/favicon.png">
 
-    <!-- Matomo -->
-    <script>
-        const matomo = window._paq = window._paq || [];
-        const matomoSiteId = 15;
-        matomo.push(["trackPageView"]);
-        matomo.push(["enableLinkTracking"]);
-        (function() {
-            matomo.push(["setTrackerUrl", "https://biblys.matomo.cloud/matomo.php"]);
-            matomo.push(["setSiteId", matomoSiteId]);
-            matomo.push(["addTracker", "https://analytics.biblys.cloud/matomo.php", matomoSiteId]);
-            const d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0];
-            g.async=true; g.src="//cdn.matomo.cloud/biblys.matomo.cloud/matomo.js"; s.parentNode.insertBefore(g,s);
-        })();
-    </script>
-    <!-- End Matomo Code -->
-
+    {% include "layout:_analytics.html.twig" %}
 </head>
 <body>
 
