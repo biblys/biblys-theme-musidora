@@ -1,0 +1,108 @@
+{% extends "layout:base.html.twig" %}
+
+{% block title %}
+  Les Éditions Musidora
+{% endblock %}
+
+{% block main %}
+  <!-- Remplacement du menu par gros logo sur la page d'accueil -->
+
+  <style>
+      header{
+          grid-template-areas: "logo logo logo logo logo logo logo logo logo logo logo logo";
+      }
+
+      .logo{
+          height: 35vh;
+          width: auto;
+          max-width: 85vw;
+      }
+
+      .header-logo{
+          justify-self: center;
+      }
+
+      .navigation, .panier{
+          display: none;
+      }
+  </style>
+
+  <!-- Hero -->
+
+  <section class="fond-noir">
+    <div class="hero grid container">
+      <div class="slogan">
+        <p>Imaginaire</p>
+        <p>en</p>
+        <p>tous genres</p>
+      </div>
+      <a href="/rayon/boutique" class="bouton cta-button">
+        Visitez notre boutique
+      </a>
+      <!--<div class="infos">
+          Campagne de financement participatif<br />du 1er mars au 14 avril
+          <p style="margin-top:var(--line);"><a href="https://fr.ulule.com/anachronopete/?ul_campaign=presale_142327&ul_source=home&ul_medium=site" class="bouton cta-button">
+          En savoir plus
+      </a></p>
+
+      </div>-->
+      <div class="vitrine">
+        {% for article in articles %}
+        <div class=" vitrine__livre">
+          <img class="image-vitrine" src="{{ article.coverUrl }}" alt="{{ article.title }}">
+          <div class="description">
+            <p class="titre-livre">{{ article.title }}</p>
+            <p class="auteur">{{ article.authors }}</p>
+            <a href="{{ path('article_show', { slug: article.url }) }}">En savoir plus</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenu principal -->
+  <main class="grid main-accueil">
+    <blockquote class="main-quote">
+      <p class="citation accueil__citation">C’est une nouvelle [...] excellente quand [une maison d’édition] entend explorer des territoires bibliographiques encore inconnus et offrir un catalogue neuf. C’est peu de dire que la naissance des éditions Musidora se place dans cette dernière catégorie.</p>
+      <p class="source accueil__source">Johan Faerber, <a href="https://diacritik.com/2022/04/12/nicolas-tellop-les-editions-musidora-ne-vont-pas-tant-se-consacrer-a-la-science-fiction-qua-limaginaire-dans-sa-definition-la-plus-large/"><span class="italique">Diacritik</span></a></p>
+    </blockquote>
+
+    <div class="newsletter">
+      <p>Pour être avertis de nos sorties et de notre actualité,</p>
+      <p>abonnez-vous à notre lettre d'information</p>
+      <form method="post" action="/mailing/subscribe">
+        <input class="inscription" type="email" name="email" placeholder="Votre adresse e-mail" />
+        <button class="bouton bouton-dark type="submit">S'abonner</button>
+      </form>
+    </div>
+    <div class="social-media">
+      <p>Suivez-nous sur les réseaux sociaux&nbsp;:</p>
+      <div class="social-media-icons">
+        <a href="https://www.facebook.com/editionsmusidora">
+          <svg class="facebook-icon" viewbox="0 0 60 60" alt="Facebook">
+            <path d="m 43.124276,10.757298 h 5.914026 V 0.45620664 C 48.017948,0.31583559 44.509,0 40.422402,0 31.8955,0 26.054428,5.3638078 26.054428,15.222203 v 9.072842 h -9.40952 v 11.515803 h 9.40952 V 64.786789 H 37.590864 V 35.813638 h 9.028907 L 48.053029,24.297736 H 37.588173 v -7.933689 c 0.0027,-3.328447 0.898865,-5.606749 5.536103,-5.606749 z" />
+          </svg>
+        </a>
+        <a href="https://www.instagram.com/musidora_editions/" class="instagram-icon">
+          <svg class="instagram-icon" viewBox="0 0 60 60" alt="instagram">
+            <path d="M 43.010311,0 H 15.963727 C 7.1611814,0 0,7.2766851 0,16.221216 v 27.483277 c 0,8.943998 7.1611814,16.220741 15.963727,16.220741 h 27.047059 c 8.80208,0 15.963252,-7.276743 15.963252,-16.220741 V 16.221216 C 58.974038,7.2766851 51.812866,0 43.010311,0 Z m 12.506416,43.704493 c 0,7.006888 -5.610247,12.70769 -12.506416,12.70769 H 15.963727 c -6.8961687,0 -12.506416,-5.700802 -12.506416,-12.70769 V 16.221216 c 0,-7.0074018 5.6102473,-12.7081459 12.506416,-12.7081459 h 27.047059 c 6.895694,0 12.505941,5.7007441 12.505941,12.7081459 z" />
+            <path d="m 29.487067,13.577748 c -8.891683,0 -16.125241,7.350269 -16.125241,16.385392 0,9.035027 7.233558,16.385297 16.125241,16.385297 8.891587,0 16.12524,-7.35027 16.12524,-16.385297 0,-9.035123 -7.233653,-16.385392 -16.12524,-16.385392 z m 0,29.257638 c -6.984821,0 -12.66793,-5.774329 -12.66793,-12.872246 0,-7.097537 5.683109,-12.872341 12.66793,-12.872341 6.9852,0 12.667929,5.774804 12.667929,12.872341 0,7.097917 -5.682729,12.872246 -12.667929,12.872246 z" />
+            <path d="m 45.997826,7.7581899 c -2.627583,0 -4.764824,2.1721029 -4.764824,4.8416341 0,2.670006 2.137241,4.842156 4.764824,4.842156 2.627678,0 4.7653,-2.17215 4.7653,-4.842156 0,-2.6700068 -2.137622,-4.8416341 -4.7653,-4.8416341 z m 0,6.1702641 c -0.720816,0 -1.307513,-0.59621 -1.307513,-1.32863 0,-0.732802 0.586697,-1.328536 1.307513,-1.328536 0.721292,0 1.307989,0.595734 1.307989,1.328536 0,0.73242 -0.586697,1.32863 -1.307989,1.32863 z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="about body-text">
+      <h2 class="accueil__h2">Dans la maison Musidora</h2>
+      <p>Imaginons un coffre. Ou une malle, si vous préférez.<br />
+
+        Si ce coffre se trouve dans le grenier, peut-être contient-il les journaux oubliés d’un vieil oncle original (et la révélation de ses stupéfiantes expériences scientifiques). Dans la chambre à coucher des enfants, il devient porte ouverte sur un autre monde, peuplé de créatures fabuleuses. S’il est exposé dans le salon, sans doute sert-il à ranger un service de table présent dans la famille depuis plusieurs générations, témoin des drames de l’intimité. Dans le bureau, il recèle à coup sûr la solution d’un crime impossible, l’ultime indice capable de démasquer le mystérieux meurtrier sans visage. À la cave, le coffre sert de sépulture à un cadavre — parfois, on entend des grattements sur les parois, à l’intérieur. Sur une île déserte, enfin, enterré au pied d’un arbre tropical, il garde le plus incroyable des trésors.</p>
+
+      <p>Ce coffre, c’est l’imaginaire. Il contient la réalité et la transforme.</p>
+
+      <p>Les Éditions Musidora invitent à puiser à l’intérieur pour y découvrir les trésors cachés de la littérature, du cinéma et de la bande dessinée.</p>
+      <a href="/pages/a-propos" class="bouton bouton-dark">En savoir plus</a>
+    </div>
+  </main>
+{% endblock %}
