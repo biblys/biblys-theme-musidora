@@ -9,11 +9,13 @@
     {% for article in articles|filter(article => article.has('url')) %}
 
         <div class="vignette">
-            {% if article.hasCover() %}
-                {{ article.getCoverTag({
+            {% if article.model|hasImage %}
+                {% include "AppBundle:Article:_cover.html.twig" with {
+                    article: article.model,
                     link: path('article_show', { slug: article.url }),
                     class: "cover-boutique",
-                    size: "w300" })|raw }}
+                    width: 300,
+                } %}
             {% endif %}
 
             <p><span class="vignette__titre">{{ article.title }}</span></p>

@@ -45,8 +45,13 @@
             {% endif %}
         </div>
         <div class="fiche__couv">
-            {% if article.hasCover() %}
-                {{ article.getCoverTag({ class:"cover", size:"w300",rel: "lightbox" })|raw }}
+            {% if article.model|hasImage %}
+                {% include "AppBundle:Article:_cover.html.twig" with {
+                    article: article.model,
+                    class: "cover",
+                    width: 300,
+                    rel: "lightbox"
+                } %}
             {% endif %}
         </div>
         <div class="fiche__infos">
