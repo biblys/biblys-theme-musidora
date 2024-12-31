@@ -49,7 +49,12 @@
       <div class="vitrine">
         {% for article in articles %}
         <div class=" vitrine__livre">
-          <img class="image-vitrine" src="{{ article.coverUrl }}" alt="{{ article.title }}">
+          {% include "AppBundle:Article:_cover.html.twig" with {
+            article: article.model,
+            class: "image-vitrine",
+            width: 400,
+            link: path('article_show', { slug: article.url })
+          } %}
           <div class="description">
             <p class="titre-livre">{{ article.title }}</p>
             <p class="auteur">{{ article.authors }}</p>
